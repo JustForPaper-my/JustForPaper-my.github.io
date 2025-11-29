@@ -8,7 +8,7 @@
         /* 全局设置 */
         body { font-family: "Microsoft YaHei", sans-serif; margin: 0; padding: 0; background-color: #f0f0f0; }
         
-        /* 1. 【新增】主内容居中容器，实现左右间距和居中效果 */
+        /* 1. 【核心】主内容居中容器，实现左右间距和居中效果 */
         .main-wrapper {
             max-width: 1200px; /* 设定最大宽度，例如1200像素 */
             margin: 0 auto; /* 自动居中 */
@@ -23,7 +23,6 @@
             padding: 20px;
             text-align: center;
             font-size: 2em;
-            /* margin-bottom: 20px; 移除这里的margin，让它贴合header */
         }
 
         /* 作者信息框 */
@@ -62,15 +61,27 @@
             margin-bottom: 15px;
         }
         
-        /* HTML5 视频标签样式：确保视频宽度适应容器 */
-        .video-container video {
+        /* 响应式视频嵌入容器 (16:9 比例) */
+        .embed-responsive {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 比例 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+        }
+        .embed-responsive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            display: block;
+            height: 100%;
+            border: 0;
         }
 
     </style>
 </head>
 <body>
+    
     <div class="main-wrapper"> 
         <div class="header">
             [你的项目名称]
@@ -86,13 +97,17 @@
                     下面视频为演示效果
                 </div>
                 
-                <video controls>
-                    <source src="BE51K.mp4" type="video/mp4">
-                    您的浏览器不支持 HTML5 视频播放。
-                </video>
+                <div class="embed-responsive">
+                    <iframe 
+                        src="https://www.youtube.com/embed/MZaPKSUj75Q" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
                 
             </div>
         </div>
     </div>
+
 </body>
 </html>
